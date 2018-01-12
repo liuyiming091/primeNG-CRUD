@@ -1,0 +1,20 @@
+<!-- <ul>
+    <li *ngFor="let cust of customers"
+		[class.selected]="cust === selectedCustomer" (click)="onSelect(cust)">
+		<h4>{{cust.id}} - {{cust.firstName}} {{cust.lastName}}</h4> 
+	</li>
+</ul>
+<customer-detail [customer]="selectedCustomer"></customer-detail> -->
+<div>
+	<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+		<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+		<input #gb type="text" pInputText size="50" placeholder="Global Filter">
+	</div>
+	<p-dataTable [value]="customers" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt>
+		<p-header>List of Customers</p-header>
+		<p-column field="id" header="id" [filter]="true" filterPlaceholder="Search" [sortable]="true"></p-column>
+		<p-column field="firstName" header="First Name" [filter]="true" filterPlaceholder="Search" [sortable]="true"></p-column>
+		<p-column field="lastName" header="Last Name" [filter]="true" filterPlaceholder="Search" [sortable]="true"></p-column>
+	</p-dataTable>
+</div>
+
