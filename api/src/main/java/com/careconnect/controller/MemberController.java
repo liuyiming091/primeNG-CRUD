@@ -33,8 +33,6 @@ public class MemberController {
 	
 	@PostMapping(value="/postMember")
 	public Member postMember(@RequestBody Member member) {
-		//Member save=memRepository.saveAndFlush(member);
-		//System.out.println(save.getId());
 		return memRepository.saveAndFlush(member);
 	}
 	
