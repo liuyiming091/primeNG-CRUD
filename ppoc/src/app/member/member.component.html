@@ -3,16 +3,17 @@
 		<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
 		<input #gb type="text" pInputText size="50" placeholder="Global Filter">
   </div>
-  <!-- <div class="filter">
-    <p-multiSelect [options]="columnOptions" [(ngModel)]="memberCols"></p-multiSelect>
-  </div> -->
   <div class="filter">
-    <p-multiSelect [options]="columnOptions" [(ngModel)]="members"></p-multiSelect>
+    <p-multiSelect [options]="columnOptions" [(ngModel)]="memberCols"></p-multiSelect>
   </div>
+  <!-- <div class="filter">
+    <p-multiSelect [options]="columnOptions" [(ngModel)]="members"></p-multiSelect>
+  </div> -->
   <p-dataTable [value]="members" selectionMode="single" [(selection)]="selectedMember" datakey="id" [rows]="10" [responsive]="true" [paginator]="true" [globalFilter]="gb" #dt [scrollable]="true" unfrozenWidth="100%" scrollWidth="100%"
   [rowsPerPageOptions]="[5,10,20]" >
     <p-header>List of Members</p-header>
-    <p-column field="id" header="id" [filter]="true" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'160px'}"></p-column>
+    <p-column *ngFor="let col of memberCols" field="{{col.field}}" header="{{col.header}}"  [filter]="true" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'160px'}"></p-column>
+    <!-- <p-column field="id" header="id" [filter]="true" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'160px'}"></p-column>
     <p-column field="suffix" header="suffix" [filter]="true" filterPlaceholder="Search" [sortable]="true"[style]="{'width':'160px'}"></p-column>
     <p-column field="firstName" header="First Name" [filter]="true" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'160px'}"></p-column>
     <p-column field="middleName" header="Middle Name" [filter]="true" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'160px'}"></p-column>
@@ -21,7 +22,7 @@
     <p-column field="ssn" header="ssn" [filter]="true" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'160px'}"></p-column>
     <p-column field="medicaidNumber" header="Medicaid Number" [filter]="true" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'160px'}"></p-column>
     <p-column field="groupNumber" header="Group Number" [filter]="true" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'160px'}"></p-column>
-    <p-column field="groupName" header="Group Name" [filter]="true" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'160px'}"></p-column>
+    <p-column field="groupName" header="Group Name" [filter]="true" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'160px'}"></p-column> -->
     <p-column [style]="{'width':'160px'}">
       <ng-template pTemplate="header">
         Edit

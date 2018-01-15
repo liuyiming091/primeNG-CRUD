@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from '../member';
-import { DataService } from '../data.service';
 import { MemberdataService } from '../memberdata.service';
 import { RouterModule,Router } from '@angular/router'
+import { SelectItem } from 'primeng/primeng';
 @Component({
   selector: 'app-member',
   templateUrl: './member.component.html',
@@ -17,7 +17,10 @@ export class MemberComponent implements OnInit {
   displayEdit: boolean;
   editMember=new Member;
   selectedMember: Member;
-  private router: Router;
+  columnOptions: SelectItem[] = [];
+
+  //savedMember:Member;
+  //private router: Router;
   constructor(private memberdataService: MemberdataService) {
     this.memberCols = [
       { field: 'id', header: 'Member ID' },
@@ -30,8 +33,13 @@ export class MemberComponent implements OnInit {
       { field: 'medicaidNumber', header: 'Medicaid Number', width: '250px' },
       { field: 'groupNumber', header: 'Group Number', width: '250px' },
       { field: 'groupName', header: 'Group Name', width: '250px' },
-      { field: 'Edit', header: 'Edit', operate: true },
+      //{ field: 'Edit', header: 'Edit', operate: true },
     ];
+     
+    for(const value of this.memberCols){
+      this.columnOptions.push({label:value.header,value});
+    }
+
    }
 
   getMembers(){
@@ -51,20 +59,27 @@ export class MemberComponent implements OnInit {
   }
 
   private save(): void {
-    this.memberdataService.create(this.newMember);
-    this.getMembers();
+    this.memberdataService.create(this.newMember).then(save=> 
+      {
+        this.members=[...this.members,save];
+      });
     this.displayDialog=false;
   }
 
   private saveEdit(): void {
-    console.log(this.selectedMember.id);
+    //console.log(this.selectedMember.id);
     this.memberdataService.edit(this.selectedMember);
     this.displayEdit=false;
   }
 
   private delete():void{
+    let index=this.findSelectedMemberIndex();
+    this.members=this.members.filter((val,i)=>i!=index);
     this.memberdataService.delete(this.selectedMember.id);
     this.displayEdit=false;
   }
 
+  findSelectedMemberIndex(): number {
+    return this.members.indexOf(this.selectedMember);
+  }
 }

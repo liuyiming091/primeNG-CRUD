@@ -5,14 +5,9 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
-import {CustomerDetailsComponent} from './customer-details/customer-details.component';
-import {CustomersComponent} from './customers/customers.component';
-import {DataService} from './data.service';
 import {MemberdataService} from './memberdata.service';
-import {CreateCustomerComponent} from './create-customer/create-customer.component';
 
 import {enableProdMode} from '@angular/core';
-import {SearchCustomersComponent} from './search-customers/search-customers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -37,10 +32,6 @@ import { MemberComponent } from './member/member.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerDetailsComponent,
-    CustomersComponent,
-    CreateCustomerComponent,
-    SearchCustomersComponent,
     MemberComponent
   ],
   imports: [
@@ -67,7 +58,7 @@ import { MemberComponent } from './member/member.component';
   RadioButtonModule,
   TabViewModule,
   ],
-  providers: [DataService,MemberdataService],
+  providers: [MemberdataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

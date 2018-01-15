@@ -19,7 +19,7 @@ export class MemberdataService {
       .catch(this.handleError);
   }
 
-  create(member: Member): Promise<Member[]>{
+  create(member: Member): Promise<Member>{
     return this.http
       .post("postMember",JSON.stringify(member),{headers:this.headers})
       .toPromise()
